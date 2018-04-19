@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>three.js webgl - loaders - 3DS loader</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+			body {
+				font-family: Monospace;
+				background-color: #000;
+				color: #fff;
+				margin: 0px;
+				overflow: hidden;
+			}
+			#info {
+				color: #fff;
+				position: absolute;
+				top: 10px;
+				width: 100%;
+				text-align: center;
+				z-index: 100;
+				display:block;
+			}
+			#info a, .button { color: #f00; font-weight: bold; text-decoration: underline; cursor: pointer }
+		</style>
+	</head>
+
+	<body>
+
+		<script src="js/three.js"></script>
+		<script src="js/controls/TrackballControls.js"></script>
+		<script src="js/loaders/OBJLoader.js"></script>
+		
+ 
+<script>
+ 
+var scene = new THREE.Scene();
+
+var ratio = window.innerWidth / window.innerHeight;
+var camera = new THREE.PerspectiveCamera(75, ratio, 0.1, 1000);
+camera.position.z = 100;
+
+var renderer = new THREE.WebGLRenderer();
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
+
+renderer.render(scene, camera);
+
+
+var loader = new THREE.JSONLoader();
+loader.load("obj/android.json", function(geometry, mat) {
+var material = new THREE.MeshFaceMaterial(mat);
+var object = new THREE.Mesh(geometry, material);
+object.scale.set(50, 50, 50);
+object.position.set(0,0,0);
+scene.add(object);
+}
+);
+</script>
+	</body>
+</html>

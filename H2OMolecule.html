@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>three.js webgl - loaders - 3DS loader</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+			body {
+				font-family: Monospace;
+				background-color: #000;
+				color: #fff;
+				margin: 0px;
+				overflow: hidden;
+			}
+			#info {
+				color: #fff;
+				position: absolute;
+				top: 10px;
+				width: 100%;
+				text-align: center;
+				z-index: 100;
+				display:block;
+			}
+			#info a, .button { color: #f00; font-weight: bold; text-decoration: underline; cursor: pointer }
+		</style>
+	</head>
+
+	<body>
+		<div id="info">
+			<a href="http://threejs.org" target="_blank" rel="noopener">three.js</a> - 3DS loader
+		</div>
+
+		<script src="js/three.js"></script>
+		<script src="js/controls/TrackballControls.js"></script>
+		<script src="js/loaders/OBJLoader.js"></script>
+		
+ 
+<script>
+ 
+var camera, scene, renderer, control, controls, light;
+var cross, container;
+var width, height;
+ 
+init();
+animate();
+render();
+ 
+function init() {
+width =window.innerWidth;
+height = window.innerHeight;
+				container = document.createElement( 'div' );
+
+				document.body.appendChild( container );
+ 
+renderer = new THREE.WebGLRenderer({ antialias: false });
+renderer.sortObjects = false;
+renderer.setSize( width, height );
+container.appendChild( renderer.domElement );
+ 
+
+camera = new THREE.PerspectiveCamera( 70, width / height, 1, 15000 );
+camera.position.set( 2500, 2500, 2500 );
+//camera.lookAt( new THREE.Vector3( 0, 200, 0 ) );
+ 
+controls = new THREE.TrackballControls( camera, container );
+controls.rotateSpeed = 2.0;
+controls.zoomSpeed = 2.5;
+controls.panSpeed = 2.8;
+ 
+controls.noZoom = false;
+controls.noPan = false;
+ 
+controls.staticMoving = true;
+controls.dynamicDampingFactor = 0.3;
+ 
+controls.keys = [ 65, 83, 68 ];
+ 
+controls.addEventListener( 'change', render );
+ 
+scene = new THREE.Scene();
+cross =  new THREE.GridHelper( 6500, 50 );
+scene.add(cross);
+
+light = new THREE.DirectionalLight( 0xFFFFFF );
+light.position.set( 50, 50, 50 );
+scene.add( light );
+
+
+
+
+var textureobj = new THREE.Texture();
+
+var loader = new THREE.OBJLoader();
+loader.load('http://localhost/stage/molecules/Water-Molecule-H2O.obj', function ( object ) {
+ 
+object.traverse( function ( child ) {
+ 
+if ( child instanceof THREE.Mesh ) {
+ 
+child.material.map = textureobj;
+}
+} );
+
+
+var oldScale = new THREE.Vector3();
+oldScale.copy(object.scale);
+//object.rotation.x=-90*Math.PI/180;
+//object.position.x=10+80/2;
+object.scale.z=oldScale.z*50;
+object.scale.x=oldScale.x*50 ;
+object.scale.y=oldScale.y*50 ;
+
+
+
+scene.add( object );
+//control.attach(object);
+//scene.add(control);
+render();
+} );
+ 
+
+
+
+
+
+window.addEventListener( 'resize', onWindowResize, false );
+}
+ 
+function onWindowResize() {
+ 
+camera.aspect = window.innerWidth / window.innerHeight;
+camera.updateProjectionMatrix();
+ 
+renderer.setSize( window.innerWidth, window.innerHeight );
+ 
+controls.handleResize();
+render();
+ 
+}	
+function animate() {
+requestAnimationFrame( animate );
+controls.update();;
+}
+ 
+function render() {
+renderer.render( scene, camera );
+}
+</script>
+	</body>
+</html>
