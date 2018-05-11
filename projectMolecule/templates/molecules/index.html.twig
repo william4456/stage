@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello !{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>name</th>
+                <th>scientificName</th>
+                <th>description</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for molecule in molecules %}
+                <tr>
+                    <td>{{ molecule.name }}</td>
+                    <td>{{ molecule.scientificName }}</td>
+                    <td>{{ molecule.description }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <h1>Molecules's list</h1>
+        {% for molecule in molecules %}
+        <a class="btn btn-primary btn-lg btn-block" href="molecules/{{ molecule.id }}" role="button">{{ molecule.name }}</a>
+        {% endfor %}
+
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+
+{% endblock %}

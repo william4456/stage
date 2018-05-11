@@ -56,12 +56,11 @@
 		</div>
 		<script src="js/three.js"></script>
 		<script src="./threex.windowresize.js"></script>
-		<script src="js/three.js"></script>
 		<script src="js/controls/TrackballControls.js"></script>
 		<script src="js/loaders/OBJLoader.js"></script> 
 
 		<!--Jquery-->
-		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>	
 
 		<!--Popper.js-->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -77,7 +76,7 @@
 
 			var scene	= new THREE.Scene();
 			var camera	= new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 1000 );
-			camera.position.z = 250;
+			camera.position.z = 180;
 			
 			THREEx.WindowResize(renderer, camera)
 
