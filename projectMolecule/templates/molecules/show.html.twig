@@ -1,18 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello !{% endblock %}
+{% block title %}{{ molecules.name }}{% endblock %}
 
 {% block body %}
+    <body id="molecule">
     <div class="container">
         <script src="/stage/projectMolecule/three/three.js"></script>
         <script src="/stage/projectMolecule/three/threex.windowresize.js"></script>
         <script src="/stage/projectMolecule/three/controls/TrackballControls.js"></script>
         <script src="/stage/projectMolecule/three/loaders/OBJLoader.js"></script>
+        <h1 id="nameMolecule">{{ molecules.scientificName }}</h1>
         <script>
             var pathObj = "{{ molecules.path }}";
 
             var renderer = new THREE.WebGLRenderer({ alpha: true });//alpha -> transparency
             renderer.setSize( window.innerWidth-20, window.innerHeight-20 );
+
             document.body.appendChild( renderer.domElement );
 
             var scene	= new THREE.Scene();
@@ -91,13 +94,15 @@
                 controls.update();
                 renderer.render( scene, camera );
             })();
-        </script>
 
-        <h1 id="nameMolecule">{{ molecules.scientificName }}</h1>
+            var description = document.createElement( 'div' );
+            description.id = 'moleculeDescription';
+            description.innerHTML = '{{ molecules.description }}';
+            document.body.appendChild( description );
+        </script>
     </div>
+    </body>
 {% endblock %}
 
 {% block javascripts %}
-
 {% endblock %}
-

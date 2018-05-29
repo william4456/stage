@@ -1,0 +1,210 @@
+body {
+    background : white;
+    margin: 0;
+    padding: 0;
+    height:100%;
+    position: relative;
+}
+html{
+    height:100%;
+}
+
+
+/* =============================================================================
+   Navbar
+   ========================================================================== */
+.box-shadow {
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, .05);
+}
+.separator{
+    border-left:1px solid black;
+    padding-left: 15px;
+    height: 25px;
+}
+
+@media (max-width: 768px){.barre{
+    display: none;}
+
+}
+
+/* =============================================================================
+   Molecule list
+   ========================================================================== */
+a{color: white;}
+a:hover {
+    text-decoration: none;
+}
+
+/* =============================================================================
+   Molecule mysql://root:root@127.0.0.1:3306/internship
+   ========================================================================== */
+#molecule{
+    background: radial-gradient(ellipse at center,  rgba(43,45,48,1) 0%,rgba(0,0,0,1) 100%);
+}
+#moleculeDescription{
+    text-align: center;
+    color: white;
+    position : absolute;
+    top : 600px;
+    font-size: 20px;
+}
+#nameMolecule {
+    color: #fff;
+    top: 10px;
+    width: 100%;
+    text-align: center;
+    z-index: 100;
+    display:block;
+    margin-top:30px;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-weight: bold; letter-spacing: -1px;
+    line-height: 1;
+}
+h1{
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* =============================================================================
+   Molecule form
+   ========================================================================== */
+#moleculeForm {
+    max-width:800px;
+    margin:50px auto;
+    border-radius:2px;
+    padding:20px;
+}
+
+/* =============================================================================
+   Form Connection
+   ========================================================================== */
+#loginForm{
+    background-color: #f5f5f5;
+}
+#h3Login{
+    margin-top: 15px;
+    margin-bottom: 25px;
+    color: #111;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 30px;
+    font-weight: 300;
+}
+#submitButton{
+    margin-top: 25px; ;
+}
+.form-signin {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+    margin-top: 70px;
+}
+.form-signin .checkbox {
+    font-weight: 400;
+}
+.form-signin .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+}
+.form-signin .form-control:focus {
+    z-index: 2;
+}
+.form-signin input[type="text"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+/* =============================================================================
+   Particles
+   ========================================================================== */
+
+/* ---- base ---- */
+#title{
+    color:white;
+    position : absolute;
+    top : 300px;
+    text-align: center;
+}
+
+canvas{
+    margin-top: -20px;
+    display:block;
+    vertical-align:bottom;
+}
+
+/* ---- particles.js container ---- */
+
+#particles-js{
+    width: 100%;
+    height: 100%;
+    background-color: #b61924;
+//background-image: url('');
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+
+/* =============================================================================
+   Footer
+   ========================================================================== */
+.footer {
+    background-image: url(http://localhost/stage/projectMolecule/public/img/backfoot.jpg);
+    width: 100%;
+    color: white;
+    text-align: center;
+    background-color: rgb(51, 42, 104);
+    padding-top: 15px;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+.footer h5 {
+    font-size: 18px;
+    color: white;
+    font-weight: bold;
+    margin-top: 20px;
+}
+.footer img {
+    margin-top: 5px;
+}
+.footer ul {
+    list-style:none;
+    padding-left: 0px;
+    line-height: 1.7;
+}
+
+#left-footer-block{
+    margin: 30px;
+}
+
+#right-footer-block{
+    text-align: center;
+    margin-top: 35px;
+}
+
+.footer a {
+    color :#d2d1d1;
+    text-decoration :none;
+}
+
+.footer .social-networks {
+    text-align: center;
+    padding-top: 45px;
+    padding-bottom: 16px;
+}
+.footer .social-networks a {
+    font-size: 32px;
+    color: #f9f9f9;
+    padding: 10px;
+    transition: 0.2s;
+}

@@ -6,21 +6,14 @@
         {% block stylesheets %}{% endblock %}
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" href="http://localhost/stage/projectMolecule/public/css/style.css">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
         <link href="http://localhost/stage/projectMolecule/public/css/hovercss/hover.css" rel="stylesheet" media="all">
 
     </head>
-    <body class="bg-light">
+    <body>
 
     <!-- Navbar-->
-    {{ include('inc/navbar.html.twig') }}
+    {{ include('inc/navbarAdmin.html.twig') }}
 
-    <!-- Validation Message-->
-    {% for message in app.flashes('notice') %}
-        <div class="flash-notice">
-            {{ message }}
-        </div>
-    {% endfor %}
 
     {% block body %}
     {% endblock %}
@@ -32,8 +25,6 @@
         {% endblock %}
         <script src="{{asset('build/js/app.js')}}"></script>
 
-    <!-- Footer-->
-    {{ include('inc/footer.html.twig') }}
-
     </body>
+
 </html>

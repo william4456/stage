@@ -1,0 +1,30 @@
+<!--
+<nav class="navbar navbar-expand-lg navbar-light bg-light" >
+    <a class="navbar-brand" href="{{ path('adminHome') }}"><img src="http://localhost/stage/projectMolecule/public/img/icon.png"></a>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li><a class="nav-link" href="{{ path('adminHome') }}">Home</a></li>
+            <li><a class="nav-link" href="{{ path('add') }}">Add Molecule</a></li>
+            <li><a class="nav-link" href="{{ path('list') }}">Molecule List</a></li>
+        </ul>
+        <div class="nav navbar-nav navbar-right">
+            <li><img src="http://localhost/stage/projectMolecule/public/img/admin.png"></li>
+            <li><a class="nav-link" href="{{ path('adminLogout') }}">Log out</a></li>
+        </div>
+    </div>
+</nav>
+-->
+
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+    <a class="navbar-brand" href="{{ path('adminHome') }}"><img src="http://localhost/stage/projectMolecule/public/img/icon.png"></a>
+    <h5 class="my-0 mr-md-auto font-weight-normal"><a class="p-2 text-dark" href="{{ path('adminHome') }}">Company name</a></h5>
+    <nav class="my-2 my-md-0 mr-md-3">
+        <a class="p-2 text-dark hvr-grow" href="{{ path('adminHome') }}">Home</a>
+        <a class="p-2 text-dark hvr-grow" href="{{ path('add') }}">Add Molecule</a>
+        <a class="p-2 text-dark hvr-grow" href="{{ path('list') }}">Molecule List</a>
+        <a class="p-2 text-dark hvr-grow" href="{{ path('adminInfo') }}">Info</a>
+    </nav>
+        <img src="http://localhost/stage/projectMolecule/public/img/admin.png">
+        <a class="p-2 text-dark hvr-grow" href="{{ path('adminLogout') }}">Log out</a>
+</div>

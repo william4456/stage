@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Molecule;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\DBAL\DBALException;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -47,4 +48,28 @@ class MoleculeRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findNb()
+    {
+        $queryBuilder = $this
+            ->createQueryBuilder('m')
+            ->select('count(m.id)')
+            ->orderBy('m.id', 'DESC');
+
+        $query = $queryBuilder->getQuery();
+
+        return $query->getResult();
+    }
+
+    public function getLastMolecule()
+    {
+        $queryBuilder = $this
+            ->createQueryBuilder('m')
+            ->orderBy('m.id', 'DESC')
+            ->setMaxResults(4);
+
+        $query = $queryBuilder->getQuery();
+
+        return $query->getResult();
+    }
 }

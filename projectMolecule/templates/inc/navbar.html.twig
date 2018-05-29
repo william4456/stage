@@ -1,35 +1,35 @@
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <a class="navbar-brand" href="{{ path('home') }}"><img src="http://localhost/stage/img/icon.png"></a>
+<!--
+<nav class="navbar navbar-expand-lg navbar-light bg-light" >
+    <a class="navbar-brand" href="{{ path('home') }}"><img src="http://localhost/stage/projectMolecule/public/img/icon.png"></a>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li><a class="nav-link" href="{{ path('molecules') }}">Molecules</a></li>
+
+            <li>
+                <a class="nav-link" href="{{ path('molecules_name', {'id': 3}) }}">H2O</a>
+            </li>
+        </ul>
+        <div class="nav navbar-nav navbar-right">
+            <li>
+                <a class="nav-link" href="{{ path('adminLogin') }}">Log in</a>
+            </li>
         </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li><a href="{{ path('molecules') }}">Molecules</a></li>
-
-                <li>
-                    <a href="{{ path('molecules_name', {'id': 1}) }}">
-                        H2O
-                    </a>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Link</a></li>
-                <li><a href="#">Connexion</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
+    </div>
 </nav>
+!-->
+
+
+
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+    <a class="navbar-brand" href="{{ path('home') }}"><img src="http://localhost/stage/projectMolecule/public/img/icon.png"></a>
+    <h5 class="my-0 mr-md-auto font-weight-normal"><a class="p-2 text-dark" href="{{ path('home') }}">Company name</a></h5>
+    <nav class="my-2 my-md-0 mr-md-3">
+        <a class="p-2 text-dark hvr-grow" href="{{ path('home') }}">Home</a>
+        <a class="p-2 text-dark hvr-grow" href="{{ path('molecules') }}">Molecules</a>
+        <a class="p-2 text-dark hvr-grow" href="{{ path('molecules_name', {'id': 3}) }}">H2O</a>
+    </nav>
+    <div class="separator">
+    </div>
+    <a class="p-2 text-dark hvr-grow" href="{{ path('adminLogin') }}">Log in</a>
+</div>

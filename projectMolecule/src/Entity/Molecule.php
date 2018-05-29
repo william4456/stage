@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MoleculeRepository")
@@ -33,8 +34,11 @@ class Molecule
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Please, choose a molecule as an obj file.")
+     * @Assert\File(mimeTypes={ "text/plain" })
      */
     private $path;
+
 
     public function getId()
     {
@@ -82,7 +86,7 @@ class Molecule
         return $this->path;
     }
 
-    public function setPath(string $path): self
+    public function setPath(string $path)
     {
         $this->path = $path;
 

@@ -1,35 +1,30 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello !{% endblock %}
+{% block title %}Molecules{% endblock %}
 
 {% block body %}
     <div class="container">
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>name</th>
-                <th>scientificName</th>
-                <th>description</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for molecule in molecules %}
-                <tr>
-                    <td>{{ molecule.name }}</td>
-                    <td>{{ molecule.scientificName }}</td>
-                    <td>{{ molecule.description }}</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
         <h1>Molecules's list</h1>
-        {% for molecule in molecules %}
-        <a class="btn btn-primary btn-lg btn-block" href="molecules/{{ molecule.id }}" role="button">{{ molecule.name }}</a>
-        {% endfor %}
+        <br>
+        <div class="card-deck mb-4 text-center">
+            {% for molecule in molecules %}
+                <div class="col-4">
+                    <div class="card mb-4 box-shadow">
+                        <div class="card-header">
+                            <h4 class="my-0 font-weight-normal">{{ molecule.name }}</h4>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title pricing-card-title">{{ molecule.scientificName }}</h5>
+                            <hr>
+                            <p class="card-text">{{ molecule.description|length > 80 ? molecule.description|slice(0, 80) ~ ' ...' : molecule.description  }}
+                            </p>
+                            <button type="button" class="btn btn-lg btn-block btn-primary hvr-back-pulse"><a href="{{ path('molecules_name', {'id':  molecule.id}) }}">See More</a></button>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
 
+        </div>
     </div>
-{% endblock %}
-
-{% block javascripts %}
 
 {% endblock %}

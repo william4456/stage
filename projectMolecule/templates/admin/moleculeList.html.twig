@@ -1,0 +1,53 @@
+{% extends 'baseAdmin.html.twig' %}
+
+
+{% block body %}
+    <div class="container">
+        List
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Scientific</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for list in moleculeList %}
+                    <tr>
+                        <td>{{ list.name }}</td>
+                        <td>{{ list.scientificname }}</td>
+                        <td>{{ list.description }}</td>
+                        <td>
+                            <ul>
+                                <li>
+                                    <a href="{{ path('list_edit', { 'id': list.id }) }}">edit</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <button onclick="editFunction()">Click me</button>
+        <form id="myForm">
+            <input type="button" onclick="submitFunction()" value="Submit form">
+        </form>
+
+    </div>
+
+<script>
+    function editFunction() {
+        document.getElementById("content").contentEditable = "true";
+    }
+function submitFunction() {
+    document.getElementById("myForm").submit();
+
+}
+
+</script>
+<style>table, th, td {
+        border: 1px solid black;
+    }
+</style>
+{% endblock %}

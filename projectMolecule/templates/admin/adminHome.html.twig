@@ -1,0 +1,36 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block body %}
+
+    {% for us in user %}
+        <h1>Welcome {{ us.username }}</h1>
+    {% endfor %}
+
+
+
+    <div class="container">
+        <h2>Dernieres molecules ajoutées</h2>
+
+        <div class="row mb-2">
+            {% for lastMolecule in last %}
+            <div class="col-md-6">
+                <div class="card flex-md-row mb-4 box-shadow h-md-250">
+                    <div class="card-body d-flex flex-column align-items-start">
+                        <strong class="d-inline-block mb-2 text-primary">{{ lastMolecule.name }}</strong>
+                        <h3 class="mb-0">
+                            <p class="text-dark" href="#">{{ lastMolecule.scientificName }}</p>
+                        </h3>
+                        <div class="mb-1 text-muted"></div>
+                        <p class="card-text mb-auto">{{ lastMolecule.description|length > 120 ? lastMolecule.description|slice(0, 120) ~ ' ...' : lastMolecule.description  }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <h2>Nb molecules in BDD</h2>
+        {% for us in nbMolecule %}
+            <h1>{{ us|number_format }}</h1>
+        {% endfor %}
+    </div>
+{% endblock %}

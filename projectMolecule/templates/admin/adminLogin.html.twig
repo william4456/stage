@@ -1,0 +1,30 @@
+{% extends 'baseLogin.html.twig' %}
+
+{% block body %}
+
+    {% if error %}
+        <div class="alert alert-danger">
+            {{ error.messageKey }}
+        </div>
+    {% endif %}
+
+    <body id ="loginForm">
+
+    <form class="form-signin" action="{{ path('adminLogin') }}" method="post">
+        <div class="text-center">
+            <img src="http://localhost/stage/projectMolecule/public/img/lock.png" alt="" width="72" height="72">
+        </div>
+
+        <h1 id="h3Login" class="h3 mb-3 font-weight-normal">Please sign in</h1>
+
+        <label for="username" class="sr-only">Email address</label>
+        <input type="text" id="username" name="_username" value="{{ last_username }}" placeholder="Username" class="form-control" required="" autofocus=""/>
+
+        <label for="password" class="sr-only">Password</label>
+        <input type="password" id="password" name="_password" placeholder="Password" class="form-control" />
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
+
+        <button id="submitButton" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </form>
+    </body>
+{% endblock %}
