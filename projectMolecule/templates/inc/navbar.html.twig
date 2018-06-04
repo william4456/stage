@@ -26,9 +26,18 @@
     <h5 class="my-0 mr-md-auto font-weight-normal"><a class="p-2 text-dark" href="{{ path('home') }}">Company name</a></h5>
     <nav class="my-2 my-md-0 mr-md-3">
         <a class="p-2 text-dark hvr-grow" href="{{ path('home') }}">Home</a>
-        <a class="p-2 text-dark hvr-grow" href="{{ path('molecules') }}">Molecules</a>
     </nav>
-    <div class="separator">
-    </div>
+    <ul class="nav nav-">
+        <li class="p-2 text-dark">
+            <a class="nav-ltabsink dropdown-toggle p-2 text-dark hvr-grow" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Molecules</a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="{{ path('molecules') }}">All</a>
+                <div class="dropdown-divider"></div>
+                {% for molecule in molecules %}
+                    <a class="dropdown-item" href="{{ path('molecules_name', {'id': molecule.id}) }}">{{ molecule.name }}</a>
+                {% endfor %}
+            </div>
+        </li></ul>
+
     <a class="p-2 text-dark hvr-grow" href="{{ path('adminLogin') }}">Log in</a>
 </div>

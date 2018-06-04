@@ -13,7 +13,7 @@
     <body class="bg-light">
 
     <!-- Navbar-->
-    {{ include('inc/navbar.html.twig') }}
+    {{ render(controller('App\\Controller\\MoleculesController::navbar')) }}
 
     <!-- Validation Message-->
     {% for message in app.flashes('notice') %}
@@ -34,7 +34,5 @@
 
     <!-- Footer-->
     {{ include('inc/footer.html.twig') }}
-
-    menu dropdown
     </body>
 </html>

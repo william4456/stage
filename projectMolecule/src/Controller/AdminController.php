@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\MoleculeFile;
 use App\Form\MoleculeFormType;
 use App\Form\UserType;
 use App\Entity\Molecule;
@@ -17,6 +18,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Form\Form;
+use Symfony\Component\HttpFoundation\JsonResponse;
+
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class AdminController extends Controller
 {
@@ -59,19 +66,7 @@ class AdminController extends Controller
                 'Your changes were saved!'
             );
 
-            /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
-            $file = $molecule->getPath();
-            $fileName = $this->generateUniqueFileName().'.'.$file->gue
-
-            // moves the file to the directory where brochures are stored
-            $file->move(
-                $this->getParameter('molecule_directory'),
-                $fileName
-            );
-
-            // updates the 'brochure' property to store the PDF file name
-            // instead of its contents
-            $molecule->setPath($fileName);
+            $molecule->getFile()->preUpload();
 
             // 3) save the Molecule !
             $entityManager = $this->getDoctrine()->getManager();
@@ -109,54 +104,50 @@ class AdminController extends Controller
         );
     }
 
-
-
     /**
-    * Displays a form to edit an existing post entity.
-    *
-    * @Route("admin/list/{id}/edit", name="list_edit")
-    * @Method({"GET", "POST"})
-    */
-    public function editAction(Request $request, Molecule $molecule)
-    {
-        $deleteForm = $this->deleteEntryAction($molecule);
-        $editForm = $this->createForm('src\Form\MoleculeFormType', $molecule);
-        $editForm->handleRequest($request);
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-            return $this->redirectToRoute('list_edit', array('id' => $molecule->getId()));
+     * @Route("/admin/edit/{id}", name="edit")
+     * Method({"GET", "POST"})
+     */
+    public function edit(Request $request, $id) {
+        $molecule = new Molecule();
+        $molecule = $this->getDoctrine()->getRepository(Molecule::class)->find($id);
+        $form = $this->createFormBuilder($molecule)
+            ->add('name', TextType::class, array('attr' => array('class' => 'form-control')))
+            ->add('scientificName', TextType::class, array(
+                'required' => false,
+                'attr' => array('class' => 'form-control')
+            ))
+            ->add('description', TextareaType::class, array('attr' => array('class' => 'form-control')))
+
+            ->add('submit', SubmitType::class, array(
+                'label' => 'Update',
+                'attr' => array('class' => 'btn btn-primary mt-3')
+            ))
+            ->getForm();
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->flush();
+            return $this->redirectToRoute('list');
         }
-        return $this->render('Blog/post/edit.html.twig', array(
-            'post' => $molecule,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+        return $this->render('admin/editMolecule.html.twig', array(
+            'form' => $form->createView()
         ));
     }
 
+
     /**
-     * @Route("/delete-entry/{entryId}", name="admin_delete_entry")
-     *
-     * @param $entryId
-     *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @Route("/admin/delete/{id}", requirements={"id": "\d+"}, name="delete")
+     * @Method({"GET"})
      */
-    public function deleteEntryAction($entryId)
+    public function delete(Request $request, Molecule $molecule): Response
     {
-        $blogPost = $this->blogPostRepository->findOneById($entryId);
-        $author = $this->authorRepository->findOneByUsername($this->getUser()->getUserName());
-
-        if (!$blogPost || $author !== $blogPost->getAuthor()) {
-            $this->addFlash('error', 'Unable to remove entry!');
-
-            return $this->redirectToRoute('admin_entries');
-        }
-
-        $this->entityManager->remove($blogPost);
-        $this->entityManager->flush();
-
-        $this->addFlash('success', 'Entry was deleted!');
-
-        return $this->redirectToRoute('admin_entries');
+        $em = $this->getDoctrine()->getManager();
+        $em ->remove($molecule);
+        $em ->flush();
+        $this->addFlash('success', 'post deleted');
+        return $this->redirectToRoute('list');
     }
+
 
 }

@@ -21,7 +21,10 @@
                         <td>
                             <ul>
                                 <li>
-                                    <a href="{{ path('list_edit', { 'id': list.id }) }}">edit</a>
+                                    <a href="{{ path('edit', { 'id': list.id }) }}" >edit</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('delete', { 'id': list.id })}}">Delete</a>
                                 </li>
                             </ul>
                         </td>
@@ -29,23 +32,10 @@
                 {% endfor %}
             </tbody>
         </table>
-        <button onclick="editFunction()">Click me</button>
-        <form id="myForm">
-            <input type="button" onclick="submitFunction()" value="Submit form">
-        </form>
 
     </div>
 
-<script>
-    function editFunction() {
-        document.getElementById("content").contentEditable = "true";
-    }
-function submitFunction() {
-    document.getElementById("myForm").submit();
 
-}
-
-</script>
 <style>table, th, td {
         border: 1px solid black;
     }

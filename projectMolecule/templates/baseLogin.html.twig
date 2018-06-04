@@ -9,7 +9,7 @@
     </head>
 
     <!-- Navbar-->
-    {{ include('inc/navbar.html.twig') }}
+    {{ render(controller('App\\Controller\\MoleculesController::navbar')) }}
 
     <!-- Validation Message-->
     {% for message in app.flashes('notice') %}

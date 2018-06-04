@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ molecules.name }}{% endblock %}
+{% block title %}{{ molecule.name }}{% endblock %}
 
 {% block body %}
     <body id="molecule">
@@ -9,9 +9,10 @@
         <script src="/stage/projectMolecule/three/threex.windowresize.js"></script>
         <script src="/stage/projectMolecule/three/controls/TrackballControls.js"></script>
         <script src="/stage/projectMolecule/three/loaders/OBJLoader.js"></script>
-        <h1 id="nameMolecule">{{ molecules.scientificName }}</h1>
+        <h1 id="nameMolecule">{{ molecule.scientificName }} </h1>
+
+
         <script>
-            var pathObj = "{{ molecules.path }}";
 
             var renderer = new THREE.WebGLRenderer({ alpha: true });//alpha -> transparency
             renderer.setSize( window.innerWidth-20, window.innerHeight-20 );
@@ -80,7 +81,9 @@
             };
 
             var loader = new THREE.OBJLoader( manager );
-            loader.load("{{ molecules.path }}", onLoad, onProgress, onError );
+            {% for f in file %}
+            loader.load("{{ f.path }}", onLoad, onProgress, onError );
+            {% endfor %}
 
             /////////////////////////////////////////
             // Functions
@@ -97,7 +100,7 @@
 
             var description = document.createElement( 'div' );
             description.id = 'moleculeDescription';
-            description.innerHTML = '{{ molecules.description }}';
+            description.innerHTML = '{{ molecule.description }}';
             document.body.appendChild( description );
         </script>
     </div>

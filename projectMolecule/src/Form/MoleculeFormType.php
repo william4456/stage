@@ -10,6 +10,13 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use App\Entity\MoleculeFile;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
 class MoleculeFormType extends AbstractType
 {
@@ -22,7 +29,7 @@ class MoleculeFormType extends AbstractType
             ->add('name', TextType::class)
             ->add('scientificName', TextType::class)
             ->add('description', TextareaType::class)
-            ->add('path', FileType::class, array('label' => 'Molecule File'))
+            ->add('file', MoleculeFileType::class, ['mapped'=>true])
             ->add('submit', SubmitType::class)
         ;
     }

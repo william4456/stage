@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MoleculeRepository")
@@ -33,11 +35,12 @@ class Molecule
     private $description;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @Assert\Valid
      * @Assert\NotBlank(message="Please, choose a molecule as an obj file.")
-     * @Assert\File(mimeTypes={ "text/plain" })
+     * @ORM\OneToOne(targetEntity="MoleculeFile", cascade="persist")
+     * @ORM\JoinColumn(name="MoleculeFile_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
      */
-    private $path;
+    private $file;
 
 
     public function getId()
@@ -81,14 +84,26 @@ class Molecule
         return $this;
     }
 
-    public function getPath()
+    /**
+     * Get file
+     *
+     * @return MoleculeFile
+     */
+    public function getFile()
     {
-        return $this->path;
+        return $this->file;
     }
 
-    public function setPath(string $path)
+    /**
+     * Set file
+     *
+     * @param MoleculeFile $file
+     *
+     * @return Molecule
+     */
+    public function setFile(MoleculeFile $file = null)
     {
-        $this->path = $path;
+        $this->file = $file;
 
         return $this;
     }

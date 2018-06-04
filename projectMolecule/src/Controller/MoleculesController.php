@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Molecule;
+use App\Repository\MoleculeFileRepository;
 use App\Repository\MoleculeRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -26,15 +27,29 @@ class MoleculesController extends Controller
     public function molecule(MoleculeRepository $moleculeRepository)
     {
         $molecules = $moleculeRepository->findAll();
+
+
         return $this->render('molecules/index.html.twig', compact('molecules'));
     }
 
     /**
      * @Route("/molecules/{id}", name="molecules_name")
      */
-    public function show($id, MoleculeRepository $moleculeRepository)
+    public function show($id, MoleculeRepository $moleculeRepository, MoleculeFileRepository $fileRepository)
     {
-        $molecules = $moleculeRepository->find($id);
-        return $this->render('molecules/show.html.twig', compact('molecules'));
+        $molecule = $moleculeRepository->find($id);
+        $file = $fileRepository->findAll();
+
+        $tab = array(
+            'molecule'=>$molecule,
+            'file'=>$file
+        );
+        return $this->render('molecules/show.html.twig', $tab);
+    }
+
+    public function navbar( MoleculeRepository $moleculeRepository){
+        $molecules = $moleculeRepository->findAll();
+
+        return $this->render('inc/navbar.html.twig', compact('molecules'));
     }
 }

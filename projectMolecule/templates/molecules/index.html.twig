@@ -18,12 +18,11 @@
                             <hr>
                             <p class="card-text">{{ molecule.description|length > 80 ? molecule.description|slice(0, 80) ~ ' ...' : molecule.description  }}
                             </p>
-                            <button type="button" class="btn btn-lg btn-block btn-primary hvr-back-pulse"><a href="{{ path('molecules_name', {'id':  molecule.id}) }}">See More</a></button>
+                            <button type="button" class="btn btn-lg btn-block btn-primary hvr-back-pulse"><a id="seeMore" href="{{ path('molecules_name', {'id':  molecule.id}) }}">See More</a></button>
                         </div>
                     </div>
                 </div>
             {% endfor %}
-
         </div>
     </div>
 
