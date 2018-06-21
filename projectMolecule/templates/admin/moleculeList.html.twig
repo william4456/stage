@@ -1,15 +1,17 @@
 {% extends 'baseAdmin.html.twig' %}
 
-
 {% block body %}
     <div class="container">
-        List
+        <div class="wel_header mt-5">
+            <h2>Molecule List</h2>
+        </div>
         <table class="table table-striped">
-            <thead>
+            <thead class="thead-dark">
                 <tr>
-                    <th>Name</th>
-                    <th>Scientific</th>
-                    <th>Description</th>
+                    <th class="name" scope="col">Name</th>
+                    <th class="scientific" scope="col">Scientific</th>
+                    <th scope="col">Description</th>
+                    <th class="modify"scope="col">Modify</th>
                 </tr>
             </thead>
             <tbody>
@@ -19,25 +21,58 @@
                         <td>{{ list.scientificname }}</td>
                         <td>{{ list.description }}</td>
                         <td>
-                            <ul>
-                                <li>
-                                    <a href="{{ path('edit', { 'id': list.id }) }}" >edit</a>
-                                </li>
-                                <li>
-                                    <a href="{{ path('delete', { 'id': list.id })}}">Delete</a>
-                                </li>
-                            </ul>
+                            <div class="row text-center">
+                                <div class="col-6">
+                                    <a href="{{ path('edit', { 'id': list.id }) }}" class="hvr-icon-bounce">
+                                       <h5> Edit <i class="fas fa-edit hvr-icon"></i></h5>
+                                    </a>
+                                </div>
+
+                                <div class="col-6">
+                                    <a class="hvr-icon-bounce" href="{{ path('delete', { 'id': list.id })}}">
+                                        <h5>Delete <i class="fa fa-times hvr-icon"></i></h5>
+                                    </a>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
-
     </div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Delete molecule</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure to delete the molecule ?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<style>table, th, td {
+    <style>
+        table, th, td {
         border: 1px solid black;
-    }
+        }
+        .modify{
+            min-width: 280px;
+        }
+        .scientific{
+            min-width: 200px;
+        }
+        .name{
+            min-width: 150px;
+        }
 </style>
 {% endblock %}

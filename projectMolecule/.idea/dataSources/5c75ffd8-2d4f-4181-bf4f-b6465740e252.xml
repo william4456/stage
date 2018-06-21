@@ -978,7 +978,7 @@
     </column>
     <column id="245" parent="237" name="description">
       <Position>4</Position>
-      <DataType>varchar(255)|0</DataType>
+      <DataType>text|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>

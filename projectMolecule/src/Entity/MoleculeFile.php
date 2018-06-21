@@ -42,7 +42,7 @@ class MoleculeFile
 
     public function getAbsolutePath()
     {
-        return null === $this->path ? null : __DIR__.'/../../../public'.'/'.$this->path;
+        return null === $this->path ? null : __DIR__.'/../../../public/'.'/'.$this->path;
     }
     public function getWebPath()
     {
@@ -116,7 +116,7 @@ class MoleculeFile
     public function preUpload()
     {
         if (null !== $this->file) {
-            $this->fileName = md5($this->file->getClientOriginalName(). time()).'.'.$this->file->guessExtension();
+            $this->fileName = $this->file->getClientOriginalName();
             $this->path = $this->uploadDir.'/'.$this->fileName;
         }
     }

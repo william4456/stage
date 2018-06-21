@@ -1,15 +1,24 @@
 {% extends 'baseAdmin.html.twig' %}
 
 {% block body %}
-
-    <div class="container">
-        <h2>Dernieres molecules ajoutées</h2>
-
-
-            {{ form_start(form) }}
-            {{ form_widget(form) }}
-            {{ form_end(form) }}
-
-
+    <div class="wel_header mt-5">
+        <h2>Molecule List</h2>
     </div>
+    <div class="container">
+        {{ form_start(form) }}
+        <div class="form-group">
+            {{ form_row(form.name) }}
+        </div>
+        <div class="form-group">
+            {{ form_row(form.scientificName) }}
+        </div>
+        <div class="form-group">
+            {{ form_row(form.description) }}
+        </div>
+        <div class="text-center">
+            {{ form_row(form.submit) }}
+        </div>
+        {{ form_end(form) }}
+    </div>
+
 {% endblock %}

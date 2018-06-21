@@ -1,35 +1,54 @@
-<!--
-<nav class="navbar navbar-expand-lg navbar-light bg-light" >
-    <a class="navbar-brand" href="{{ path('home') }}"><img src="http://localhost/stage/projectMolecule/public/img/icon.png"></a>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li><a class="nav-link" href="{{ path('molecules') }}">Molecules</a></li>
-
-            <li>
-                <a class="nav-link" href="{{ path('molecules_name', {'id': 3}) }}">H2O</a>
-            </li>
-        </ul>
-        <div class="nav navbar-nav navbar-right">
-            <li>
-                <a class="nav-link" href="{{ path('adminLogin') }}">Log in</a>
-            </li>
+<!--Start Hedaer Section-->
+<section id="header">
+    <div class="header-area">
+        <div class="top_header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 zero_mp">
+                        <div class="address">
+                            <i class="fas fa-graduation-cap floatleft"></i>
+                            <p>A21, VAST, 18 Hoang Quoc Viet, Cau Giay, Hanoi</p>
+                        </div>
+                    </div>
+                    <!--End of col-md-4-->
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 zero_mp">
+                        <div class="phone">
+                            <i class="fa fa-phone floatleft"></i>
+                            <p>+84-24 37-91-69-60</p>
+                        </div>
+                    </div>
+                    <!--End of col-md-4-->
+                    <div class="col-md-4">
+                        <div class="social_icon text-right">
+                            <a href="https://www.facebook.com/usth.edu.vn/"><i class="fab fa-facebook-square"></i></a>
+                            <a href="https://fr.wikipedia.org/wiki/Universit%C3%A9_des_sciences_et_des_technologies_de_Hano%C3%AF"><i class="fab fa-wikipedia-w"></i></a>
+                            <a href="https://www.youtube.com/channel/UCqc5GUt4MW5ScbV7XqUWhiQ"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                    <!--End of col-md-4-->
+                </div>
+                <!--End of row-->
+            </div>
+            <!--End of container-->
         </div>
+        <!--End of top header-->
+        <!--End of header menu-->
     </div>
-</nav>
-!-->
+    <!--end of header area-->
+</section>
 
+<div id="myDIV">
 
-
-<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
-    <a class="navbar-brand" href="{{ path('home') }}"><img src="http://localhost/stage/projectMolecule/public/img/icon.png"></a>
-    <h5 class="my-0 mr-md-auto font-weight-normal"><a class="p-2 text-dark" href="{{ path('home') }}">Company name</a></h5>
+<!--End of Hedaer Section-->
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 bg-white border-bottom box-shadow">
+    <a class="navbar-brand" href="{{ path('home') }}"><img src="{{asset('img/icon.png')}}"></a>
+    <h5 class="my-0 mr-md-auto font-weight-normal"><a class="p-2 text-dark" href="{{ path('home') }}">3D molecule project</a></h5>
     <nav class="my-2 my-md-0 mr-md-3">
-        <a class="p-2 text-dark hvr-grow" href="{{ path('home') }}">Home</a>
+        <a class="p-2 text-dark hvr-underline-from-center" id="header" href="{{ path('home') }}">Home</a>
     </nav>
     <ul class="nav nav-">
         <li class="p-2 text-dark">
-            <a class="nav-ltabsink dropdown-toggle p-2 text-dark hvr-grow" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Molecules</a>
+            <a class="nav-ltabsink dropdown-toggle p-2 text-dark hvr-underline-from-center" id="header"  data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Molecules</a>
             <div class="dropdown-menu">
                 <a class="dropdown-item" href="{{ path('molecules') }}">All</a>
                 <div class="dropdown-divider"></div>
@@ -37,7 +56,10 @@
                     <a class="dropdown-item" href="{{ path('molecules_name', {'id': molecule.id}) }}">{{ molecule.name }}</a>
                 {% endfor %}
             </div>
-        </li></ul>
+        </li>
+    </ul>
 
-    <a class="p-2 text-dark hvr-grow" href="{{ path('adminLogin') }}">Log in</a>
+    <a class="p-2 text-dark hvr-underline-from-center login" id="header" href="{{ path('adminLogin') }}">Log in</a>
 </div>
+</div>
+

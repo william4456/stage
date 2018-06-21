@@ -2,36 +2,75 @@
 
 {% form_theme form 'bootstrap_4_layout.html.twig' %}
 
-
-
 {% block body %}
 
-    {% for message in app.flashes('notice') %}
-        <div class="flash-notice">
-            {{ message }}
+    <!-- Modal HTML -->
+    <div id="myModal" class="modal fade">
+        <div class="modal-dialog modal-confirm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="icon-box">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <h4 class="modal-title">Awesome!</h4>
+                </div>
+                <div class="modal-body">
+                    <p class="text-center">Your changes were saved</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success btn-block" data-dismiss="modal">OK</button>
+                </div>
+            </div>
         </div>
+    </div>
+
+    {% for message in app.flashes('notice') %}
+        <script>
+            $('#myModal').modal('show');
+        </script>
     {% endfor %}
 
     <body id ="loginForm">
-        <h1 id="h3Login" class="h3 mb-3 font-weight-normal">Complete the form</h1>
-        <div id="moleculeForm">
-            {{ form_start(form) }}
-            <div class="row">
-                <div class="col-6">
-                    {{ form_row(form.name) }}
-                </div>
-                <div class="col-6">
-                    {{ form_row(form.scientificName) }}
-                </div>
-                <div class="col-sm-12">
-                    {{ form_row(form.description) }}
-                    {{ form_row(form.file) }}
-                    <div class="text-center">
-                        {{ form_row(form.submit) }}
+        <div class="signup-form">
+            <div class="formu">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-6">
+                            <h2>Sign Up</h2>
+                        </div>
+                        <div class="col-6">
+                            <img class="img-form" src="{{asset('img/atom.png')}}">
+                        </div>
+                        <div class="col-12">
+                        <p class="mb-4">Please fill in this form to add a molecule !</p>
+                        </div>
                     </div>
                 </div>
+
+                <hr>
+                {{ form_start(form) }}
+                <div class="form-group">
+                    {{ form_row(form.name) }}
+                </div>
+                <div class="form-group">
+                    {{ form_row(form.scientificName) }}
+                </div>
+                <div class="form-group">
+                    {{ form_row(form.description) }}
+                </div>
+                <div class="form-group">
+                    {{ form_row(form.priority) }}
+                </div>
+                <div class="form-group">
+                    {{ form_row(form.file) }}
+                </div>
+                <div class="text-center">
+                    {{ form_row(form.submit) }}
+                </div>
+                {{ form_end(form) }}
             </div>
-            {{ form_end(form) }}
         </div>
+
+
     </body>
 {% endblock %}

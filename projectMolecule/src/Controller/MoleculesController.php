@@ -27,9 +27,7 @@ class MoleculesController extends Controller
     public function molecule(MoleculeRepository $moleculeRepository)
     {
         $molecules = $moleculeRepository->findAll();
-
-
-        return $this->render('molecules/index.html.twig', compact('molecules'));
+        return $this->render('molecules/allMolecule.html.twig', compact('molecules'));
     }
 
     /**
@@ -38,13 +36,13 @@ class MoleculesController extends Controller
     public function show($id, MoleculeRepository $moleculeRepository, MoleculeFileRepository $fileRepository)
     {
         $molecule = $moleculeRepository->find($id);
-        $file = $fileRepository->findAll();
+        $file = $fileRepository->find($id);
 
         $tab = array(
             'molecule'=>$molecule,
-            'file'=>$file
+            'file'=>$file,
         );
-        return $this->render('molecules/show.html.twig', $tab);
+        return $this->render('molecules/molecule.html.twig', $tab);
     }
 
     public function navbar( MoleculeRepository $moleculeRepository){
@@ -53,3 +51,5 @@ class MoleculesController extends Controller
         return $this->render('inc/navbar.html.twig', compact('molecules'));
     }
 }
+
+

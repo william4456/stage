@@ -49,18 +49,22 @@ class MoleculeRepository extends ServiceEntityRepository
     }
     */
 
-    public function findNb()
-    {
+    /*
+     * Return the molecules with the highest priority
+     */
+    public function getPriorityMolecule(){
         $queryBuilder = $this
             ->createQueryBuilder('m')
-            ->select('count(m.id)')
-            ->orderBy('m.id', 'DESC');
-
+            ->addSelect('m')
+            ->where('m.priority = 1')
+            ->orderBy('m.priority', 'ASC');
         $query = $queryBuilder->getQuery();
-
         return $query->getResult();
     }
 
+    /*
+     * Return the 4 last molecules add in the database
+     */
     public function getLastMolecule()
     {
         $queryBuilder = $this

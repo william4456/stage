@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\DocBlock\Description;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -10,6 +11,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MoleculeRepository")
  */
+
 class Molecule
 {
     /**
@@ -30,9 +32,10 @@ class Molecule
     private $scientificName;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="text", length=65535)
      */
     private $description;
+
 
     /**
      * @Assert\Valid
@@ -41,6 +44,11 @@ class Molecule
      * @ORM\JoinColumn(name="MoleculeFile_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
      */
     private $file;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $priority;
 
 
     public function getId()
@@ -77,6 +85,13 @@ class Molecule
         return $this->description;
     }
 
+    /**
+     * Set Description
+     *
+     * @param String $description
+     *
+     * @return Description
+     */
     public function setDescription(string $description): self
     {
         $this->description = $description;
@@ -104,6 +119,18 @@ class Molecule
     public function setFile(MoleculeFile $file = null)
     {
         $this->file = $file;
+
+        return $this;
+    }
+
+    public function getPriority(): ?int
+    {
+        return $this->priority;
+    }
+
+    public function setPriority(int $priority): self
+    {
+        $this->priority = $priority;
 
         return $this;
     }

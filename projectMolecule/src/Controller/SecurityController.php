@@ -10,14 +10,15 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class SecurityController extends AbstractController
 {
     /**
+     * Authentification function
      * @Route("/login", name="adminLogin")
      */
     public function login(AuthenticationUtils $helper): Response
     {
         return $this->render('admin/adminLogin.html.twig', [
-            // dernier username saisi (si il y en a un)
+            // Last username wrote
             'last_username' => $helper->getLastUsername(),
-            // La derniere erreur de connexion (si il y en a une)
+            // Last error connection
             'error' => $helper->getLastAuthenticationError(),
         ]);
     }

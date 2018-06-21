@@ -3,14 +3,15 @@
 {% block body %}
 
     {% for us in user %}
-        <h1>Welcome {{ us.username }}</h1>
+
+
+        <div class="wel_header mt-5">
+            <h2>Welcome {{ us.username }}</h2>
+            <h4 class="mb-5">Last molecules add</h4>
+        </div>
     {% endfor %}
 
-
-
     <div class="container">
-        <h2>Dernieres molecules ajoutées</h2>
-
         <div class="row mb-2">
             {% for lastMolecule in last %}
             <div class="col-md-6">
@@ -28,9 +29,32 @@
             {% endfor %}
         </div>
 
-        <h2>Nb molecules in BDD</h2>
-        {% for us in nbMolecule %}
-            <h1>{{ us|number_format }}</h1>
-        {% endfor %}
+        <div class="wel_header mt-5">
+
+        <h4 class="mb-5">Molecules with the highest priority</h4>
+
+        </div>
+
+        <div class="row mb-2">
+            {% for priorityMolecule in priority %}
+                <div class="col-lg-4 col-md-12">
+                    <div class="card text-center box-shadow">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <h4 class="card-title success">{{ priorityMolecule.name }}</h4>
+                                <h3 class="mb-0">
+                                    <p class="text-dark" href="#">{{ priorityMolecule.scientificName }}</p>
+                                </h3>
+                                <hr>
+                                <p class="card-text">{{ priorityMolecule.description|length > 150 ? priorityMolecule.description|slice(0, 150) ~ ' ...' : priorityMolecule.description  }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
     </div>
+
+
 {% endblock %}
+

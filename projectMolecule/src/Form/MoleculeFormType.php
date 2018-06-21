@@ -28,7 +28,8 @@ class MoleculeFormType extends AbstractType
         $builder
             ->add('name', TextType::class)
             ->add('scientificName', TextType::class)
-            ->add('description', TextareaType::class)
+            ->add('description', TextareaType::class , array('attr' => array('class' => 'textArea')))
+            ->add('priority', IntegerType::class, array('attr' => array('min' => 1)))
             ->add('file', MoleculeFileType::class, ['mapped'=>true])
             ->add('submit', SubmitType::class)
         ;
@@ -42,6 +43,4 @@ class MoleculeFormType extends AbstractType
             'data_class' => Molecule::class,
         ]);
     }
-
-
 }
