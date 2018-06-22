@@ -38,10 +38,17 @@ a:hover {
     background: radial-gradient(ellipse at center,  rgba(43,45,48,1) 0%,rgba(0,0,0,1) 100%);
 }
 #moleculeDescription{
-    text-align: center;
+    text-align: justify;
     color: white;
     font-size: 20px;
+    margin-bottom : 70px;
+    margin-top : -70px;
+    margin-right : 150px;
+    margin-left : 150px;
+    line-height: 140%;
 }
+
+
 #nameMolecule {
     color: #fff;
     width: 100%;
@@ -471,7 +478,6 @@ html {
 /*Welcome Section*/
 #welcome {
     min-height: 350px;
-    background: #fbfbfb;
     padding: 80px 0;
 }
 .wel_header {
@@ -647,6 +653,5 @@ section#counter {
     margin-left: 8rem!important;
     margin-top: -15px;
 }
-
 
 

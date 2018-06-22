@@ -16,18 +16,10 @@ class MoleculesController extends Controller
     /**
      * @Route("/", name="home")
      */
-    public function home()
-    {
-        return $this->render('home/welcome.html.twig');
-    }
-
-    /**
-     * @Route("/molecules", name="molecules")
-     */
-    public function molecule(MoleculeRepository $moleculeRepository)
+    public function home(MoleculeRepository $moleculeRepository)
     {
         $molecules = $moleculeRepository->findAll();
-        return $this->render('molecules/allMolecule.html.twig', compact('molecules'));
+        return $this->render('home/welcome.html.twig', compact('molecules'));
     }
 
     /**

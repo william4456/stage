@@ -50,8 +50,6 @@
         <li class="p-2 text-dark">
             <a class="nav-ltabsink dropdown-toggle p-2 text-dark hvr-underline-from-center" id="header"  data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Molecules</a>
             <div class="dropdown-menu">
-                <a class="dropdown-item" href="{{ path('molecules') }}">All</a>
-                <div class="dropdown-divider"></div>
                 {% for molecule in molecules %}
                     <a class="dropdown-item" href="{{ path('molecules_name', {'id': molecule.id}) }}">{{ molecule.name }}</a>
                 {% endfor %}

@@ -38,11 +38,11 @@ class MoleculeFile
      */
     public $file;
 
-    private $uploadDir="uploads";
+    private $uploadDir="public/uploads";
 
     public function getAbsolutePath()
     {
-        return null === $this->path ? null : __DIR__.'/../../../public/'.'/'.$this->path;
+        return null === $this->path ? null : __DIR__.'/../../public/'.'/'.$this->path;
     }
     public function getWebPath()
     {
@@ -51,7 +51,8 @@ class MoleculeFile
     protected function getUploadRootDir()
     {
         // le chemin absolu du répertoire où les documents uploadés doivent être sauvegardés
-        return __DIR__.'/../../../public/'.$this->getUploadDir();
+        return __DIR__.'/../../public/'.$this->getUploadDir();
+
     }
     protected function getUploadDir()
     {
