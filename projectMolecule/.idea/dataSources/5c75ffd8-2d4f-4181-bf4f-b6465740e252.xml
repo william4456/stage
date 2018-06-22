@@ -930,140 +930,154 @@
       <Charset>utf8mb4</Charset>
       <DefaultForCharset>0</DefaultForCharset>
     </collation>
-    <table id="236" parent="4" name="migration_versions">
+    <table id="236" parent="4" name="app_user">
+      <Engine>InnoDB</Engine>
+      <Collation>utf8mb4_unicode_ci</Collation>
+    </table>
+    <table id="237" parent="4" name="migration_versions">
       <Engine>InnoDB</Engine>
       <Collation>utf8_unicode_ci</Collation>
     </table>
-    <table id="237" parent="4" name="molecule">
+    <table id="238" parent="4" name="molecule">
       <Engine>InnoDB</Engine>
       <Collation>utf8mb4_unicode_ci</Collation>
     </table>
-    <table id="238" parent="4" name="molecule_file">
+    <table id="239" parent="4" name="molecule_file">
       <Engine>InnoDB</Engine>
       <Collation>utf8mb4_unicode_ci</Collation>
     </table>
-    <table id="239" parent="4" name="user">
-      <Engine>InnoDB</Engine>
-      <Collation>utf8mb4_unicode_ci</Collation>
-    </table>
-    <column id="240" parent="236" name="version">
-      <Position>1</Position>
-      <DataType>varchar(255)|0</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <key id="241" parent="236" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>version</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="242" parent="237" name="id">
+    <column id="240" parent="236" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="243" parent="237" name="name">
+    <column id="241" parent="236" name="username">
+      <Position>2</Position>
+      <DataType>varchar(25)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="242" parent="236" name="password">
+      <Position>3</Position>
+      <DataType>varchar(64)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="243" parent="236" name="is_active">
+      <Position>4</Position>
+      <DataType>tinyint(1)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="244" parent="236" name="UNIQ_88BDF3E9F85E0677">
+      <ColNames>username</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="245" parent="236" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="246" parent="236" name="UNIQ_88BDF3E9F85E0677">
+      <ColNames>username</ColNames>
+      <UnderlyingIndexName>UNIQ_88BDF3E9F85E0677</UnderlyingIndexName>
+    </key>
+    <column id="247" parent="237" name="version">
+      <Position>1</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="248" parent="237" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>version</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="249" parent="238" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="250" parent="238" name="name">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="244" parent="237" name="scientific_name">
+    <column id="251" parent="238" name="scientific_name">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="245" parent="237" name="description">
+    <column id="252" parent="238" name="description">
       <Position>4</Position>
       <DataType>text|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="246" parent="237" name="MoleculeFile_id">
+    <column id="253" parent="238" name="priority">
       <Position>5</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="247" parent="237" name="UNIQ_F2EF223925C7B4F0">
+    <column id="254" parent="238" name="MoleculeFile_id">
+      <Position>6</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="255" parent="238" name="UNIQ_F2EF223925C7B4F0">
       <ColNames>MoleculeFile_id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="248" parent="237" name="PRIMARY">
+    <key id="256" parent="238" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="249" parent="237" name="UNIQ_F2EF223925C7B4F0">
+    <key id="257" parent="238" name="UNIQ_F2EF223925C7B4F0">
       <ColNames>MoleculeFile_id</ColNames>
       <UnderlyingIndexName>UNIQ_F2EF223925C7B4F0</UnderlyingIndexName>
     </key>
-    <foreign-key id="250" parent="237" name="FK_F2EF223925C7B4F0">
+    <foreign-key id="258" parent="238" name="FK_F2EF223925C7B4F0">
       <ColNames>MoleculeFile_id</ColNames>
       <RefSchemaName>internship</RefSchemaName>
       <RefTableName>molecule_file</RefTableName>
       <RefColNames>id</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="251" parent="238" name="id">
+    <column id="259" parent="239" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="252" parent="238" name="file_name">
+    <column id="260" parent="239" name="file_name">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="253" parent="238" name="path">
+    <column id="261" parent="239" name="path">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="254" parent="238" name="file">
+    <column id="262" parent="239" name="file">
       <Position>4</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="255" parent="238" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="256" parent="239" name="id">
-      <Position>1</Position>
-      <DataType>int(11)|0</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="257" parent="239" name="username">
-      <Position>2</Position>
-      <DataType>varchar(255)|0</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="258" parent="239" name="password">
-      <Position>3</Position>
-      <DataType>varchar(255)|0</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="259" parent="239" name="roles">
-      <Position>4</Position>
-      <DataType>json|0</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <key id="260" parent="239" name="PRIMARY">
+    <key id="263" parent="239" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>

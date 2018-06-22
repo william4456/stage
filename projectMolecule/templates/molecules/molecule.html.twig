@@ -5,7 +5,15 @@
 {% block body %}
     <body id="molecule">
     <div class="container">
-        <h1 id="nameMolecule">{{ molecule.scientificName }} </h1>
+        <div class="row">
+            <div class="col-6">
+                <h1 id="nameMolecule">{{ molecule.name }} </h1>
+
+            </div>
+            <div class="col-6">
+                <h1 id="nameMolecule">{{ molecule.scientificName }} </h1>
+            </div>
+        </div>
         <script>
             /////////////////////////////////////////
             // Variable initialisation
@@ -67,7 +75,7 @@
                 object.traverse( function ( texture ) {
                     var material = new THREE.MeshBasicMaterial({map: texture});
                 });
-                object.position.y = - 75;
+                object.position.y = - 95;
                 object.position.x = 95;
 
                 scene.add( object );
@@ -89,11 +97,8 @@
                 renderer.render( scene, camera );
             })();
 
-            var description = document.createElement( 'div' );
-            description.innerHTML = "{{ molecule.description }}";
-            description.id = 'moleculeDescription';
-            document.body.appendChild( description );
         </script>
     </div>
+    <h1 id="moleculeDescription">{{ molecule.description }}</h1>
     </body>
 {% endblock %}

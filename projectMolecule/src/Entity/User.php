@@ -6,122 +6,132 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
+ * @ORM\Table(name="app_user")
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
- * @ORM\Table(name="user")
  */
 class User implements UserInterface, \Serializable
 {
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
-     *
-     * @var string
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=25, unique=true)
      */
     private $username;
 
     /**
-     * @var string
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=64)
      */
     private $password;
 
     /**
-     * @var array
-     *
-     * @ORM\Column(type="json")
+     * @ORM\Column(name="is_active", type="boolean")
      */
-    private $roles = [];
+    private $isActive;
 
-    public function getId(): int
+    public function __construct()
     {
-        return $this->id;
+        $this->isActive = true;
+        // may not be needed, see section on salt below
+        // $this->salt = md5(uniqid('', true));
     }
 
-    public function getUsername(): string
-    {
-        return $this->username;
-    }
-
-    public function setUsername(string $username): void
+    /**
+     * @param mixed $username
+     */
+    public function setUsername($username): void
     {
         $this->username = $username;
     }
 
-    public function getPassword(): string
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    public function getSalt()
+    {
+        // you *may* need a real salt depending on your encoder
+        // see section on salt below
+        return null;
+    }
+
+    public function getPassword()
     {
         return $this->password;
     }
 
-    public function setPassword(string $password): void
+    public function isAccountNonExpired()
+    {
+        return true;
+    }
+
+    public function isAccountNonLocked()
+    {
+        return true;
+    }
+
+    public function isCredentialsNonExpired()
+    {
+        return true;
+    }
+
+    public function isEnabled()
+    {
+        return $this->isActive;
+    }
+
+    /**
+     * @param mixed $password
+     */
+    public function setPassword($password): void
     {
         $this->password = $password;
     }
 
-    /**
-     * Retourne les rôles de l'user
-     */
-    public function getRoles(): array
+    public function getRoles()
     {
-        $roles = $this->roles;
-
-        // Afin d'être sûr qu'un user a toujours au moins 1 rôle
-        if (empty($roles)) {
-            $roles[] = 'ROLE_USER';
-        }
-
-        return array_unique($roles);
+        return array('ROLE_ADMIN');
     }
 
-    public function setRoles(array $roles): void
+    public function eraseCredentials()
     {
-        $this->roles = $roles;
     }
 
     /**
-     * Retour le salt qui a servi à coder le mot de passe
-     *
-     * {@inheritdoc}
+     * @param mixed $isActive
      */
-    public function getSalt(): ?string
+    public function setIsActive($isActive): void
     {
-        // See "Do you need to use a Salt?" at https://symfony.com/doc/current/cookbook/security/entity_provider.html
-        // we're using bcrypt in security.yml to encode the password, so
-        // the salt value is built-in and you don't have to generate one
-
-        return null;
+        $this->isActive = $isActive;
+    }
+    /** @see \Serializable::serialize() */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->username,
+            $this->password,
+            $this->isActive,
+            // see section on salt below
+            // $this->salt,
+        ));
     }
 
-    /**
-     * Removes sensitive data from the user.
-     *
-     * {@inheritdoc}
-     */
-    public function eraseCredentials(): void
+    /** @see \Serializable::unserialize() */
+    public function unserialize($serialized)
     {
-        // Nous n'avons pas besoin de cette methode car nous n'utilions pas de plainPassword
-        // Mais elle est obligatoire car comprise dans l'interface UserInterface
-        // $this->plainPassword = null;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function serialize(): string
-    {
-        return serialize([$this->id, $this->username, $this->password]);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function unserialize($serialized): void
-    {
-        [$this->id, $this->username, $this->password] = unserialize($serialized, ['allowed_classes' => false]);
+        list (
+            $this->id,
+            $this->username,
+            $this->password,
+            $this->isActive,
+            // see section on salt below
+            // $this->salt
+            ) = unserialize($serialized);
     }
 }
