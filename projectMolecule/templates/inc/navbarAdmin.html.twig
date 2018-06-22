@@ -1,13 +1,13 @@
 
 <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
-    <a class="navbar-brand" href="{{ path('adminHome') }}"><img src="{{asset('img/icon.png')}}"></a>
+    <a class="navbar-brand" href="{{ path('adminHome') }}"><img src="{{asset('public/img/icon.png')}}"></a>
     <h5 class="my-0 mr-md-auto font-weight-normal"><a class="p-2 text-dark" id="header"href="{{ path('adminHome') }}">Admin</a></h5>
     <nav class="my-2 my-md-0 mr-md-3">
         <a class="p-2 text-dark hvr-underline-from-center" id="header" href="{{ path('adminHome') }}">Home</a>
         <a class="p-2 text-dark hvr-underline-from-center" id="header" href="{{ path('add') }}">Add Molecule</a>
         <a class="p-2 text-dark hvr-underline-from-center" id="header" href="{{ path('list') }}">Molecule List</a>
     </nav>
-        <img src="http://localhost/stage/projectMolecule/public/img/admin.png">
+        <img src="{{asset('public/img/admin.png')}}">
         <a class="p-2 text-dark hvr-underline-from-center"id="header" href="{{ path('adminLogout') }}">Log out</a>
 </div>
 
